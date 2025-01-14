@@ -7,8 +7,7 @@ on:
 
 jobs:
   download_repo:
-    runs-on: 
-       - paresh-machine # This ensures the job runs on your self-hosted runner
+    runs-on: self-hosted # This ensures the job runs on your self-hosted runner
 
     steps:
     # Step 1: Checkout the code from your GitHub repository
@@ -21,17 +20,5 @@ jobs:
         # You can add any build or test commands here
         echo "The repo has been downloaded successfully!"
         ls -la  # Example command to list the files in the repo
+        mkdir paresh-github-demo
 
-    # Step 3: (Optional) Commit any changes (if needed)
-    - name: Commit changes (if necessary)
-      run: |
-        git add .
-        git commit -m "Made changes to the repo"
-        git push origin main  # You can adjust this to suit your needs
-      if: success()   # Only commit and push if previous steps succeed
-
-    # Step 4: (Optional) Clean up if needed
-    - name: Clean up
-      run: |
-        # You can add cleanup steps here, such as removing generated files
-        echo "Cleaning up the runner environment"
