@@ -29,7 +29,7 @@ jobs:
 # Step 3: Run the Docker Container
     - name: Run Docker Container
       run: |
-          docker run -d --name web-app-container -p 8080:80 web-app:latest
+          docker run -d --name web-app-container -p 8085:80 web-app:latest
           echo "Application is running at http://localhost:8080"
 
 # Step 4: Verify Container is Running
