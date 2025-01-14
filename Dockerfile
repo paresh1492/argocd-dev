@@ -1,18 +1,14 @@
-# Use an official Node.js image as the base image
-FROM node:18
+# Use the official NGINX image as the base image
+FROM nginx:latest
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Remove the default NGINX static files
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
+# Copy your static web application files into the NGINX web root directory
+COPY . /usr/share/nginx/html/
 
-# Copy the application code
-COPY . .
-
-# Expose the port the app runs on
+# Expose the default NGINX port
 EXPOSE 80
 
-# Start the application
-CMD ["npm", "start"]
+# Start NGINX
+CMD ["nginx", "-g", "daemon off;"]
