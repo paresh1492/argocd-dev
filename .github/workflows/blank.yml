@@ -1,0 +1,36 @@
+name: Download Git Repo to Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+
+jobs:
+  download_repo:
+    runs-on: self-hosted   # This ensures the job runs on your self-hosted runner
+
+    steps:
+    # Step 1: Checkout the code from your GitHub repository
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    # Step 2: (Optional) Perform any actions on the repo
+    - name: Run some command (e.g., build or test)
+      run: |
+        # You can add any build or test commands here
+        echo "The repo has been downloaded successfully!"
+        ls -la  # Example command to list the files in the repo
+
+    # Step 3: (Optional) Commit any changes (if needed)
+    - name: Commit changes (if necessary)
+      run: |
+        git add .
+        git commit -m "Made changes to the repo"
+        git push origin main  # You can adjust this to suit your needs
+      if: success()   # Only commit and push if previous steps succeed
+
+    # Step 4: (Optional) Clean up if needed
+    - name: Clean up
+      run: |
+        # You can add cleanup steps here, such as removing generated files
+        echo "Cleaning up the runner environment"
