@@ -21,8 +21,19 @@ jobs:
         echo "The repo has been downloaded successfully!"
         ls -la  # Example command to list the files in the repo
 
-    - name: Set Up Maven
+# Step 2: Build the Docker Image
+    - name: Build Docker Image
       run: |
-          echo "Setting up Maven"
-          mvn --version  # Verify Maven is installed
+          docker build -t web-app:latest .
+
+# Step 3: Run the Docker Container
+    - name: Run Docker Container
+      run: |
+          docker run -d --name web-app-container -p 8080:80 web-app:latest
+          echo "Application is running at http://localhost:8080"
+
+# Step 4: Verify Container is Running
+    - name: Check Docker Container Status
+      run: |
+          docker ps | grep web-app-container
 
