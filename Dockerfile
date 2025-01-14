@@ -5,7 +5,7 @@ FROM nginx:latest
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy your static web application files into the NGINX web root directory
-COPY . /usr/share/nginx/html/
+COPY index.html /usr/share/nginx/html/
 
 # Expose the default NGINX port
 EXPOSE 80
