@@ -20,5 +20,9 @@ jobs:
         # You can add any build or test commands here
         echo "The repo has been downloaded successfully!"
         ls -la  # Example command to list the files in the repo
-        mkdir paresh-github-demo
+
+    - name: Set Up Maven
+      run: |
+          echo "Setting up Maven"
+          mvn --version  # Verify Maven is installed
 
